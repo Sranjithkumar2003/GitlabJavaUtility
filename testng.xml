@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+	<parameter name="inputProjectName" value="Lucky Mobile Android"/>
+	<parameter name="outputProjectID" value="759"/>
+    <classes>
+      <class name="ValidateGitlabUtility">
+		<methods>
+			<include name="testGetProjectID"></include>
+			<include name="testGetProjectIDByGroupName"></include>
+			<include name="testGetUserID"></include>
+			<include name="testCreateBranch"></include>
+			<include name="testCreateMergeRequest"></include>
+			<include name="testCheckMergeStatus"></include>
+			<include name="testAcceptMergeRequest"></include>
+			<include name="testCheckIfBranchExists"></include>
+			<include name="testDeleteBranch"></include>
+			<include name="testMergeRequestHasNoChanges"></include>
+			<include name="testSetMergePermission"></include>
+			<include name="testUnprotectBranch"></include>
+			<include name="testHasMergeError"></include>
+			<include name="testCheckoutRepo"></include>
+			<include name="testGetRepoSSHURL"></include>
+			<include name="testCheckinFileToGitWithRebase"></include>
+		</methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
