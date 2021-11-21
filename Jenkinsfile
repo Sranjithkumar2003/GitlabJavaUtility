@@ -14,7 +14,8 @@ pipeline {
 			    echo 'Running Build Pipeline'
 			    sh 'pwd'
 			    sh 'ls -al'
-			    sh 'build.sh'
+			    sh 'chmod +x build.sh'
+			    sh './build.sh'
 			    /*
 			    sh 'java -version'
 			    sh 'THE_CLASSPATH='
