@@ -9,5 +9,5 @@ echo $THE_CLASSPATH
 echo 'Clearing all existing directory'
 rm -rf bin
 mkdir bin
-javac -cp ".:$THE_CLASSPATH" -d bin/ src/ValidateGitlabUtility.java
+javac -Xlint:unchecked -cp ".:$THE_CLASSPATH" -d bin/ src/ValidateGitlabUtility.java
 java bin/ValidateGitlabUtility
