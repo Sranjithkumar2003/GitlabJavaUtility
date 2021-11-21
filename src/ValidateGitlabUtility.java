@@ -36,7 +36,7 @@ public class ValidateGitlabUtility {
 			groovyShell = new GroovyShell();
 			groovy = classLoader.parseClass(new File("src/vars/GitlabUtility.groovy"));
 			
-			groovyObj = (GroovyObject) groovy.newInstance();
+			groovyObj = (GroovyObject) groovy.getDeclaredConstructor().newInstance();
 			Object result = groovyObj.invokeMethod("initialize", new Object[] { });
 			Assert.assertEquals(result, true);
 			
