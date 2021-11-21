@@ -15,7 +15,8 @@ pipeline {
 			    sh 'java -version'
 			    sh 'THE_CLASSPATH='
 			    sh 'pwd'
-			    sh 'for i in `ls ../lib/*.jar`; do THE_CLASSPATH=${THE_CLASSPATH}:${i}; done;'
+			    sh 'ls -al'
+			    sh 'for i in `ls ./lib/*.jar`; do THE_CLASSPATH=${THE_CLASSPATH}:${i}; done;'
 			    sh 'echo $THE_CLASSPATH'
 			    echo 'Completing Build Pipeline'
 			}  
