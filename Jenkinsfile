@@ -12,6 +12,8 @@ pipeline {
 		stage ('Build') {
 			steps {
 			    echo 'Running Build Pipeline'
+			    sh 'pwd'
+			    sh 'ls -al'
 			    sh 'build.sh'
 			    /*
 			    sh 'java -version'
