@@ -10,7 +10,6 @@ import groovy.lang.GroovyShell;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-import org.codehaus.groovy.control.CompilationFailedException;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
@@ -29,6 +28,7 @@ public class ValidateGitlabUtility {
 	GroovyObject groovyObj;
 	final GroovyClassLoader classLoader = new GroovyClassLoader();
   
+	@SuppressWarnings("deprecation")
 	@BeforeTest
 	public void beforeTest() {
 		
@@ -36,7 +36,8 @@ public class ValidateGitlabUtility {
 			groovyShell = new GroovyShell();
 			groovy = classLoader.parseClass(new File("src/vars/GitlabUtility.groovy"));
 			
-			groovyObj = (GroovyObject) groovy.getDeclaredConstructor().newInstance();
+			//groovyObj = (GroovyObject) groovy.getDeclaredConstructor().newInstance();
+			groovyObj = (GroovyObject) groovy.newInstance();
 			Object result = groovyObj.invokeMethod("initialize", new Object[] { });
 			Assert.assertEquals(result, true);
 			
