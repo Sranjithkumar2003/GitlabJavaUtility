@@ -1,4 +1,5 @@
-package test.java.vars;
+package vars;
+
 
 
 // This file contains all methods related to Gitlab API
@@ -19,6 +20,7 @@ END: Global fields
 	This method retrieves the Gitlab token from Jenkins credentials store and initializes global var.
 	This method must be called first before calling any other method.
 	*/
+
 	def initialize() {
 		//env.GITLAB_API_PRIVATE_TOKEN = systemCredentials.getSecretText(systemCredentials.GITLAB_TOKEN)
 		return true
@@ -309,3 +311,5 @@ END: Global fields
 		//return sh(script: "cd ${folderPath} && git add ${fileName} && git commit -m '${commitMessage}' && git pull --rebase origin ${commitToBranch} && git push --set-upstream origin ${commitToBranch}", returnStatus: true)
 		return 0
 	}
+	
+	
