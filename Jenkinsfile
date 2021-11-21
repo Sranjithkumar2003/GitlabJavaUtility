@@ -22,7 +22,8 @@ pipeline {
 			    echo 'Clearing all existing directory'
 			    sh 'rm -rf bin'
 			    sh 'mkdir bin'
-			    sh 'javac -classpath `.:${THE_CLASSPATH}` -d bin/ src/ValidateGitlabUtility.java'
+			    //sh 'javac -classpath .:${THE_CLASSPATH} -d bin/ src/ValidateGitlabUtility.java'
+			    sh 'javac -classpath lib/ -d bin/ src/ValidateGitlabUtility.java'
 			    echo 'Completing Build Pipeline'
 			}  
 		}
