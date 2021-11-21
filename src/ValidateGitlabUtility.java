@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.GroovyObject;
 import groovy.lang.GroovyShell;
-
+import groovy.lang.Script;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -23,30 +23,25 @@ import groovy.lang.GroovyShell;
 
 public class ValidateGitlabUtility {
 	
-	GroovyShell groovyShell;
-	Class groovy;
+	private final GroovyShell groovyShell = new GroovyShell();
+	//Class groovy;
+	Script script;
 	GroovyObject groovyObj;
 	final GroovyClassLoader classLoader = new GroovyClassLoader();
   
-	@SuppressWarnings("deprecation")
 	@BeforeTest
 	public void beforeTest() {
 		
 		try {
-			groovyShell = new GroovyShell();
-			groovy = classLoader.parseClass(new File("src/vars/GitlabUtility.groovy"));
+			//groovyShell = new GroovyShell();
+			//groovy = classLoader.parseClass(new File("src/vars/GitlabUtility.groovy"));
+			script = groovyShell.parse(new File("src/vars/GitlabUtility.groovy"));
 			
 			//groovyObj = (GroovyObject) groovy.getDeclaredConstructor().newInstance();
-			groovyObj = (GroovyObject) groovy.newInstance();
-			Object result = groovyObj.invokeMethod("initialize", new Object[] { });
+			//groovyObj = (GroovyObject) groovy.newInstance();
+			Object result = script.invokeMethod("initialize", new Object[] { });
 			Assert.assertEquals(result, true);
 			
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
