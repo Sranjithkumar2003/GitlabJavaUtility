@@ -17,11 +17,11 @@ pipeline {
 			    sh 'pwd'
 			    sh 'ls -al'
 			    sh 'for i in `ls ./lib/*.jar`; do THE_CLASSPATH=${THE_CLASSPATH}:${i}; done;'
-			    sh 'echo $THE_CLASSPATH'
+			    sh 'echo `$THE_CLASSPATH`'
 			    echo 'Clearing all existing directory'
 			    sh 'rm -rf bin'
 			    sh 'mkdir bin'
-			    sh 'javac -classpath ".:${THE_CLASSPATH}" -d bin/ ValidateGitlabUtility.java'
+			    sh 'javac -classpath ".:${THE_CLASSPATH}" -d bin/ src/ValidateGitlabUtility.java'
 			    echo 'Completing Build Pipeline'
 			}  
 		}
