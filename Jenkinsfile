@@ -19,7 +19,8 @@ pipeline {
 			    sh 'for i in `ls ./lib/*.jar`; do THE_CLASSPATH=${THE_CLASSPATH}:${i}; done;'
 			    sh 'echo $THE_CLASSPATH'
 			    echo 'Clearing all existing directory'
-			    sh 'rm -r bin'
+			    sh 'rm -rf bin'
+			    sh 'mkdir bin'
 			    sh 'javac -classpath ".:${THE_CLASSPATH}" -d bin/ ValidateGitlabUtility.java'
 			    echo 'Completing Build Pipeline'
 			}  
