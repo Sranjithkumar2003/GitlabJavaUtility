@@ -12,6 +12,8 @@ pipeline {
 		stage ('Build') {
 			steps {
 			    echo 'Running Build Pipeline'
+			    sh 'build.sh'
+			    /*
 			    sh 'java -version'
 			    sh 'THE_CLASSPATH='
 			    sh 'pwd'
@@ -24,6 +26,7 @@ pipeline {
 			    sh 'mkdir bin'
 			    sh 'javac -cp ".:$THE_CLASSPATH" -d bin/ src/ValidateGitlabUtility.java'
 			    //sh 'javac -classpath lib/ -d bin/ src/ValidateGitlabUtility.java'
+			    */
 			    echo 'Completing Build Pipeline'
 			}  
 		}
