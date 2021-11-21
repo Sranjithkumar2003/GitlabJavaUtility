@@ -24,23 +24,33 @@ import groovy.lang.GroovyShell;
 public class ValidateGitlabUtility {
 	
 	private final GroovyShell groovyShell = new GroovyShell();
-	//Class groovy;
+	Class<GroovyObject> groovyClass;
 	Script script;
 	GroovyObject groovyObj;
 	final GroovyClassLoader classLoader = new GroovyClassLoader();
   
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@BeforeTest
 	public void beforeTest() {
 		
 		try {
-			//groovyShell = new GroovyShell();
-			//groovy = classLoader.parseClass(new File("src/vars/GitlabUtility.groovy"));
-			script = groovyShell.parse(new File("src/vars/GitlabUtility.groovy"));
 			
-			//groovyObj = (GroovyObject) groovy.getDeclaredConstructor().newInstance();
+			
+			//groovyShell = new GroovyShell();
+			groovyClass = classLoader.parseClass(new File("src/vars/GitlabUtility.groovy"));
+			//script = groovyShell.parse(new File("src/vars/GitlabUtility.groovy"));
+			
+			groovyObj = (GroovyObject) groovyClass.getDeclaredConstructor().newInstance();
 			//groovyObj = (GroovyObject) groovy.newInstance();
-			Object result = script.invokeMethod("initialize", new Object[] { });
+			Object result = groovyObj.invokeMethod("initialize", new Object[] { });
 			Assert.assertEquals(result, true);
+			
+			/*
+			groovyClass = classLoader.parseClass(new File("src/vars/SystemCredentials.groovy"));
+			groovyObj = (GroovyObject) groovyClass.getDeclaredConstructor().newInstance();
+			Object result = groovyObj.invokeMethod("getSecretText", new Object[] { });
+			Assert.assertEquals(result, "abcde");
+			*/
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -53,11 +63,18 @@ public class ValidateGitlabUtility {
 	@Test(priority = 0)
 	@Parameters({"inputProjectName", "outputProjectID"})
 	public void testGetProjectID(String inputProjectName, String outputProjectID ) {
-		System.out.println("Testing method getProjectID");
-		System.out.println("Project name : " + inputProjectName);
-		Object result = groovyObj.invokeMethod("getProjectID", new Object[] { inputProjectName });
-		//System.out.println(result);
-		Assert.assertEquals(result, outputProjectID);
+		try {
+			System.out.println("Testing method getProjectID");
+			System.out.println("Project name : " + inputProjectName);
+			Object result = groovyObj.invokeMethod("getProjectID", new Object[] { inputProjectName });
+			System.out.println("Project ID : " + result.toString());
+			//System.out.println(result);
+			Assert.assertEquals(result, outputProjectID);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@Test(priority = 1)
