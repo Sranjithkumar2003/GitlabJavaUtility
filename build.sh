@@ -10,4 +10,4 @@ echo 'Clearing all existing directory'
 rm -rf bin
 mkdir bin
 javac -Xlint:deprecation -Xlint:unchecked -cp ".:$THE_CLASSPATH" -d bin/ src/ValidateGitlabUtility.java
-java bin/ValidateGitlabUtility
+java -cp ".:$THE_CLASSPATH" org.testng.TestNG testng.xml
